@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Testing workflow for react/es6/browserify",
   "dependencies": {
+    "debug": "^2.2.0"
   },
   "devDependencies": {
     "babelify": "^6.1.3",

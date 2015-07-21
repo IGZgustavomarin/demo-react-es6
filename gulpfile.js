@@ -9,13 +9,14 @@ var gulp = require('gulp'),
 
 var vendors = [
   'react',
+  'debug',
   'jquery'
 ];
 
 
 gulp.task('vendors', function () {
   var stream = browserify({
-    debug: false,
+    debug: true,
     require: vendors
   });
 
@@ -30,10 +31,10 @@ gulp.task('vendors', function () {
 
 gulp.task('app', function () {
   var stream = browserify({
-    entries: ['./src/index.jsx'],
+    entries: ['./src/client/js/index.js'],
     transform: [babelify],
     debug: true, // <- true for source mapping
-    extensions: ['.jsx'],
+    extensions: ['.js','.jsx'],
     fullPaths: false
   });
 
@@ -48,7 +49,7 @@ gulp.task('app', function () {
 });
 
 gulp.task('watch', [], function () {
-  gulp.watch(['./src/**/*.jsx'], ['app', browserSync.reload]);
+  gulp.watch(['./src/**/*.js', './src/**/*.jsx'], ['app', browserSync.reload]);
 });
 
 gulp.task('browsersync',['vendors','app'], function () {
@@ -56,7 +57,8 @@ gulp.task('browsersync',['vendors','app'], function () {
     server: {
       baseDir: './dist'
     },
-    notify: false
+    notify: false,
+    open: false
   });
 
 });
