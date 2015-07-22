@@ -2,6 +2,7 @@
 
 var gulp = require('gulp'),
   babelify = require('babelify'),
+  uglifyify = require('uglifyify'),
   browserify = require('browserify'),
   browserSync = require('browser-sync'),
   source = require('vinyl-source-stream');
@@ -9,13 +10,14 @@ var gulp = require('gulp'),
 
 var vendors = [
   'react',
-  'debug'
+  'browser-request',
+  'promise/lib/es6-extensions'
 ];
 
 
 gulp.task('vendors', function () {
   var stream = browserify({
-    debug: true,
+    debug: false,
     require: vendors
   });
 
@@ -31,7 +33,7 @@ gulp.task('vendors', function () {
 gulp.task('app', function () {
   var stream = browserify({
     entries: ['./src/client/js/index.js'],
-    transform: [babelify],
+    transform: [babelify, uglifyify],
     debug: true, // <- true for source mapping
     extensions: ['.js','.jsx'],
     fullPaths: false

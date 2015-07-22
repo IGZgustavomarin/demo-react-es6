@@ -1,12 +1,10 @@
 import React from 'react';
-import Debug from 'debug';
 import GifBox from './components/GifBox';
 
-let debug = Debug('GifBox');
 
 export default class App {
   constructor(options) {
-    debug('app created with options', options);
+    console.log('app created with options', options);
     this.state = options.state;
   }
 
@@ -16,11 +14,11 @@ export default class App {
     });
 
     if (element) {
-      debug('render to DOM');
+      console.log('render to DOM');
       return React.render(appRootElem, element);
     }
 
-    debug('render to string');
+    console.log('render to string');
     return React.renderToString(appRootElem);
   }
 
