@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Testing workflow for react/es6/browserify",
   "dependencies": {
-    "react": "^0.13.3",
     "browser-request": "^0.3.3",
     "debug": "^2.2.0",
-    "promise": "^7.0.3"
+    "promise": "^7.0.3",
+    "react": "^0.13.3",
+    "react-paginate-component": "0.0.3"
   },
   "devDependencies": {
     "babelify": "^6.1.3",
