@@ -9,8 +9,7 @@ var gulp = require('gulp'),
 
 var vendors = [
   'react',
-  'debug',
-  'jquery'
+  'debug'
 ];
 
 

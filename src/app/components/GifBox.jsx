@@ -1,7 +1,8 @@
 import React from 'react';
 import GifList from './GifList';
 import SearchBar from './SearchBar';
-import $ from 'jquery';
+import searchGifs from '../service/giphy';
+
 
 class GifBox extends React.Component {
 
@@ -11,33 +12,18 @@ class GifBox extends React.Component {
   }
 
   handleSearch(term) {
-    console.log('Searching more gifs: ', term);
 
-    this.loadGifsFromServer(term);
-  }
+    if (!term) {
+      this.setState({list: []});
+      return;
+    }
 
-  getSearchUrl(term) {
-    term = encodeURI(term);
-    return `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=dc6zaTOxFJmzC`
-  }
+    console.log('Searching gifs about: ', term);
 
-  loadGifsFromServer(term) {
-
-    if (!term) return;
-
-    let url = this.getSearchUrl(term);
-    console.log('url ', url);
-
-    $.ajax({
-      url: url,
-      dataType: 'json',
-      success: (res) => {
+    searchGifs(term)
+      .then((res) => {
         this.setState({list: res.data});
-      },
-      error: (xhr, status, err) => {
-        console.error(this.props.url, status, err.toString());
-      }
-    });
+      })
   }
 
   componentWillMount() {

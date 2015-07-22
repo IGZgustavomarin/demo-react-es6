@@ -7,9 +7,18 @@ class SearchBar extends React.Component {
     //this.state = { list: [] }
   }
 
+  getTerm() {
+    return React.findDOMNode(this.refs.searchBox).value;
+
+  }
   handleSubmit() {
-    let term = React.findDOMNode(this.refs.searchBox).value;
-    this.props.onSearch(term);
+    this.props.onSearch(this.getTerm());
+  }
+
+  handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      this.props.onSearch(this.getTerm());
+    }
   }
 
   componentWillMount() {
@@ -23,7 +32,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" placeholder="Search..." ref="searchBox" />
+        <input type="text" placeholder="Search..." ref="searchBox" onKeyUp={this.handleKeyDown.bind(this)}/>
         <button onClick={this.handleSubmit.bind(this)}>Gif me!</button>
       </div>
       )
