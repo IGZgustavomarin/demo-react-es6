@@ -10,6 +10,15 @@ class GifItem extends React.Component {
     this.setState({ image: this.props.gif.images.fixed_width_still });
   }
 
+
+  componentWillMount() {
+    console.log('GifItem componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('GifItem componentDidMount');
+  }
+
   render() {
 
     let gif = this.props.gif;
